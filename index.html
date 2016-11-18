@@ -1,0 +1,184 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico in the root directory -->
+		<link rel="stylesheet" href="css/app.css">
+		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	</head>
+	<body class="new">
+		<!--[if lt IE 8]>
+			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<div class="layout__container">
+			<div class="layout">
+				<div class="layout__full">
+					<form>
+						<fieldset id="shipping_interval">
+							<legend>
+								<h4>Shipping Interval</h4>
+								<p>Do you want orders on a month, week, or day cycle?</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="shipping_interval__month" name="shipping_interval" value="month" class="form__radio">
+								<label for="shipping_interval__month" class="form__radio__label">Month</label>
+								<input type="radio" id="shipping_interval__week" name="shipping_interval" value="week" class="form__radio">
+								<label for="shipping_interval__week" class="form__radio__label">Week</label>
+								<input type="radio" id="shipping_interval__day" name="shipping_interval" value="day" class="form__radio">
+								<label for="shipping_interval__day" class="form__radio__label">Day</label>
+							</div><!-- .form__group -->
+						</fieldset><!-- #shipping_interval -->
+						<fieldset id="ship_on_day_of_week" style="display: none;">
+							<legend>
+								<h4>Day of Week/Month</h4>
+								<p>
+									Do you want to ship on a particular day of week or month? For example, on the <strong>15th of the month</strong>, or <strong>every Thursday</strong>?
+								</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="ship_on_day_of_week__yes" name="ship_on_day_of_week" class="form__radio" value="yes">
+								<label for="ship_on_day_of_week__yes" class="form__radio__label">Yes</label>
+								<input type="radio" id="ship_on_day_of_week__no" name="ship_on_day_of_week" class="form__radio" value="no">
+								<label for="ship_on_day_of_week__no" class="form__radio__label">No</label>
+							</div><!-- .form__group -->
+						</fieldset><!-- #ship_on_day_of_week -->
+						<fieldset id="skip_first_order" style="display: none;">
+							<legend>
+								<h4>Sync schedule</h4><!-- Delay first order? -->
+								<p>
+									<span class="shipping_interval__month" style="display: none;">
+										If the customer places an order on the 12th and the re-order date is scheduled for the 15th, will you want the initial order on the 12th sent out <strong>in addition</strong> to the scheduled order on the 15th?
+									</span><!-- .shipping_interval__month -->
+									<span class="shipping_interval__week" style="display: none;">
+										If the customer places an order on the Monday and the re-order day is scheduled for Thursday, will you want the initial order on Monday sent out <strong>in addition</strong> to the scheduled order on Thursday?
+									</span><!-- .shipping_interval__week -->
+								</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="skip_first_order__no" name="skip_first_order" value="no" class="form__radio">
+								<label for="skip_first_order__no">Yes, send out both orders</label>
+								<input type="radio" id="skip_first_order__yes" name="skip_first_order" value="yes" class="form__radio">
+								<label for="skip_first_order__yes">No, delay first order until the next scheduled date</label>
+							</div><!-- .form__group -->
+							<div class="form__placeholder">
+								<strong>Note:</strong> We immediatly send the first order to your Shopify store after a customer finishes the checkout, regardless of schedule.
+								<!-- We will always send the order to your Shopify store after a customer finishes the checkout. -->
+							</div><!-- .form__placeholder -->
+						</fieldset><!-- #skip_first_order -->
+						<fieldset id="prepayments" style="display: none;">
+							<legend>
+								<h4>Pre-Payments</h4>
+								<p>Do you want to have a customer pay for more than one shipment at a time?</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="prepayments__yes" name="prepayments" value="yes" class="form__radio">
+								<label for="prepayments__yes" class="form__radio__label">Yes</label>
+								<input type="radio" id="prepayments__no" name="prepayments" value="no" class="form__radio">
+								<label for="prepayments__no" class="form__radio__label">No</label>
+							</div><!-- .form__group -->
+							<p>If yes: enter a charge frequency that is longer than the order frequency.</p>
+						</fieldset><!-- #prepayments -->
+						<fieldset id="expiration" style="display: none;">
+							<legend>
+								<h4>Expiration</h4>
+								<p>Finally, Do you want the subscription expire after a set number of charges.</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="expiration__yes" name="expiration" value="yes" class="form__radio">
+								<label for="expiration__yes" class="form__radio__label">Yes</label>
+								<input type="radio" id="expiration__no" name="expiration" value="no" class="form__radio">
+								<label for="expiration__no" class="form__radio__label">No</label>
+							</div><!-- .form__group -->
+							<p>If yes: click expiration and enter number of charges until expiration. If you enter zero or 1 it automatically expires after the first charge.</p>
+						</fieldset><!-- #expiration -->
+					</form>
+				</div><!-- .layout__full -->
+			</div><!-- .layout -->
+		</div><!-- .layout__container -->
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+		<!--
+			<script src="js/vendors.js"></script>
+			<script src="js/scripts.js"></script>
+		-->
+		<script type="text/javascript">
+			$(function() {
+				// Shipping Interval
+				$('[name="shipping_interval"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'month' || value == 'week') {
+						// Show Day of Week/Month
+						$('#ship_on_day_of_week').show();
+						if (value == 'month') {
+							$('.shipping_interval__month').show();
+							$('.shipping_interval__week').hide();
+						} else {
+							$('.shipping_interval__month').hide();
+							$('.shipping_interval__week').show();
+						}
+					} else {
+						// Hide Day of Week/Month
+						$('#ship_on_day_of_week').hide();
+						// Show Pre-Payments section
+						$('#prepayments').show();
+					}
+				});
+				// Day of Week/Month
+				$('[name="ship_on_day_of_week"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'yes') {
+						// Show Sync schedule
+						$('#skip_first_order').show();
+					} else {
+						// Hide Sync schedule
+						$('#skip_first_order').hide();
+					}
+				});
+				// Day of Week/Month
+				$('[name="skip_first_order"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'yes') {
+						// Go to shipping settings and click skip
+					} else {
+						
+					}
+					// Show Pre-Payments section
+					$('#prepayments').show();
+				});
+				// Pre-Payments
+				$('[name="prepayments"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'yes') {
+					} else {
+					}
+					// Show Pre-Payments section
+					$('#expiration').show();
+				});
+				// Expiration
+				$('[name="expiration"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'yes') {
+					} else {
+					}
+					// All questions submitted
+				});
+			});
+		</script>
+
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+			e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+			e.src='https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+			ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+		</script>
+	</body>
+</html>
