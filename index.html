@@ -20,6 +20,30 @@
 			<div class="layout">
 				<div class="layout__full">
 					<form>
+						<!-- <fieldset id="subscription_type">
+							<legend>
+								<h4>Subscription type</h4>
+								<p>Will the product only be available as a subscription, or will it also be sold individually?</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="subscription_type__both" name="subscription_type" value="both" class="form__radio">
+								<label for="subscription_type__both" class="form__radio__label">One-time and Subscription</label>
+								<input type="radio" id="subscription_type__only" name="subscription_type" value="subscription_only" class="form__radio">
+								<label for="subscription_type__only" class="form__radio__label">Subscription Only</label>
+							</div>
+						</fieldset><!-- #subscription_type -->
+						<!-- <fieldset id="discount" style="display: none;">
+							<legend>
+								<h4>Discount</h4>
+								<p>Do you want to offer a discount to people who subscribe?</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="discount__yes" name="discount" value="yes" class="form__radio">
+								<label for="discount__yes" class="form__radio__label">Yes</label>
+								<input type="radio" id="discount__no" name="discount" value="no" class="form__radio">
+								<label for="discount__no" class="form__radio__label">No</label>
+							</div>
+						</fieldset><!-- #subscription_type -->
 						<fieldset id="shipping_interval">
 							<legend>
 								<h4>Shipping Interval</h4>
@@ -53,10 +77,10 @@
 								<h4>Sync schedule</h4><!-- Delay first order? -->
 								<p>
 									<span class="shipping_interval__month" style="display: none;">
-										If the customer places an order on the 12th and the re-order date is scheduled for the 15th, will you want the initial order on the 12th sent out <strong>in addition</strong> to the scheduled order on the 15th?
+										If the customer places an order on the 12th and the re-order date is scheduled for the 15th, will you want the re-order scheduled for the 15th to proceed as normal?
 									</span><!-- .shipping_interval__month -->
 									<span class="shipping_interval__week" style="display: none;">
-										If the customer places an order on the Monday and the re-order day is scheduled for Thursday, will you want the initial order on Monday sent out <strong>in addition</strong> to the scheduled order on Thursday?
+										If the customer places an order on the Monday and the re-order day is scheduled for Thursday, will you want the re-order scheduled for Tuesday to proceed as normal?
 									</span><!-- .shipping_interval__week -->
 								</p>
 							</legend>
@@ -64,8 +88,16 @@
 								<input type="radio" id="skip_first_order__no" name="skip_first_order" value="no" class="form__radio">
 								<label for="skip_first_order__no">Yes, send out both orders</label>
 								<input type="radio" id="skip_first_order__yes" name="skip_first_order" value="yes" class="form__radio">
-								<label for="skip_first_order__yes">No, delay first order until the next scheduled date</label>
+								<label for="skip_first_order__yes">No, skip the re-order until the next scheduled date</label>
 							</div><!-- .form__group -->
+							<div class="form__placeholder">
+								<span id="example__skip__no" style="display: none;">
+									<img src="img/example_dontskip.jpg" width="500" height="350">
+								</span><!-- #example__skip__no -->
+								<span id="example__skip__yes" style="display: none;">
+									<img src="img/example_skip.jpg" width="500" height="350">
+								</span><!-- .example__skip__yes -->
+							</div><!-- .form__placeholder -->
 							<div class="form__placeholder">
 								<strong>Note:</strong> We immediatly send the first order to your Shopify store after a customer finishes the checkout, regardless of schedule.
 								<!-- We will always send the order to your Shopify store after a customer finishes the checkout. -->
@@ -74,7 +106,7 @@
 						<fieldset id="prepayments" style="display: none;">
 							<legend>
 								<h4>Pre-Payments</h4>
-								<p>Do you want to have a customer pay for more than one shipment at a time?</p>
+								<p>Do you want to have a customer pay for more than one shipment at a time? For example, charging every 4 weeks, or every 2 months.</p>
 							</legend>
 							<div class="form__group">
 								<input type="radio" id="prepayments__yes" name="prepayments" value="yes" class="form__radio">
@@ -82,12 +114,33 @@
 								<input type="radio" id="prepayments__no" name="prepayments" value="no" class="form__radio">
 								<label for="prepayments__no" class="form__radio__label">No</label>
 							</div><!-- .form__group -->
-							<p>If yes: enter a charge frequency that is longer than the order frequency.</p>
+							<div id="example_prepaid" class="form__placeholder" style="display: none;">
+								<p><img src="img/example_prepaid.jpg" width="500" height="350"></p>
+							</div><!-- #example_prepaid .form__placeholder -->
+							<div class="form__placeholder">
+								<p>If yes: enter a charge frequency that is longer than the order frequency.</p>
+							</div><!-- .form__placeholder -->
+						</fieldset><!-- #prepayments -->
+						<fieldset id="prepaid_instructions" style="display: none;">
+							<legend>
+								<h4>Pre-Payment Instructions</h4>
+								<p>We have two approaches for integrating utilizing Pre-Payments</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="prepaid_instructions__easy" name="prepaid_instructions" value="easy" class="form__radio">
+								<label for="prepaid_instructions__easy" class="form__radio__label">Easy way</label>
+								<input type="radio" id="prepaid_instructions__hard" name="prepaid_instructions" value="hard" class="form__radio">
+								<label for="prepaid_instructions__hard" class="form__radio__label">Hard way</label>
+							</div><!-- .form__group -->
+							<div class="form__placeholder">
+								<span id="example_prepaid_instructions__easy" style="display: none;">Create 2 separate rulesets</span>
+								<span id="example_prepaid_instructions__hard" style="display: none;">How to: <a href="#">pre-paid and non-prepaid on same product page</a></span>
+							</div><!-- .form__placeholder -->
 						</fieldset><!-- #prepayments -->
 						<fieldset id="expiration" style="display: none;">
 							<legend>
 								<h4>Expiration</h4>
-								<p>Finally, Do you want the subscription expire after a set number of charges.</p>
+								<p>Do you want the subscription expire after a set number of charges.</p>
 							</legend>
 							<div class="form__group">
 								<input type="radio" id="expiration__yes" name="expiration" value="yes" class="form__radio">
@@ -95,8 +148,28 @@
 								<input type="radio" id="expiration__no" name="expiration" value="no" class="form__radio">
 								<label for="expiration__no" class="form__radio__label">No</label>
 							</div><!-- .form__group -->
-							<p>If yes: click expiration and enter number of charges until expiration. If you enter zero or 1 it automatically expires after the first charge.</p>
+							<div id="example_expires" class="form__placeholder" style="display: none;">
+								<p><img src="img/example_expires.jpg" width="500" height="350"></p>
+							</div><!-- #example_expires .form__placeholder -->
+							<div class="form__placeholder">
+								<p>If yes: click expiration and enter number of charges until expiration. If you enter zero or 1 it automatically expires after the first charge.</p>
+							</div><!-- .form__placeholder -->
 						</fieldset><!-- #expiration -->
+						<fieldset id="altpricing" style="display: none;">
+							<legend>
+								<h4>Alternate Pricing</h4>
+								<p>Do you want to charge a different amount for the inital purchase than the re-orders? This includes charging zero up-front (Free trials)</p>
+							</legend>
+							<div class="form__group">
+								<input type="radio" id="altpricing__yes" name="altpricing" value="yes" class="form__radio">
+								<label for="altpricing__yes" class="form__radio__label">Yes</label>
+								<input type="radio" id="altpricing__no" name="altpricing" value="no" class="form__radio">
+								<label for="altpricing__no" class="form__radio__label">No</label>
+							</div><!-- .form__group -->
+							<div id="example_altpricing" class="form__placeholder" style="display: none;">
+								<p><a href="#">Learn how</a></p>
+							</div><!-- #example_expires .form__placeholder -->
+						</fieldset><!-- #altpricing -->
 					</form>
 				</div><!-- .layout__full -->
 			</div><!-- .layout -->
@@ -109,6 +182,18 @@
 		-->
 		<script type="text/javascript">
 			$(function() {
+				// Subscription Type
+				$('[name="subscription_type"]').on('click', function() {
+					var value = $(this).val();
+					// Show Shipping Interval section
+					$('#discount').show();
+				});
+				// Discount
+				$('[name="discount"]').on('click', function() {
+					var value = $(this).val();
+					// Show Shipping Interval section
+					$('#shipping_interval').show();
+				});
 				// Shipping Interval
 				$('[name="shipping_interval"]').on('click', function() {
 					var value = $(this).val();
@@ -122,6 +207,8 @@
 							$('.shipping_interval__month').hide();
 							$('.shipping_interval__week').show();
 						}
+						// Hide Pre-Payments section
+						$('#prepayments').hide();
 					} else {
 						// Hide Day of Week/Month
 						$('#ship_on_day_of_week').hide();
@@ -135,18 +222,24 @@
 					if (value == 'yes') {
 						// Show Sync schedule
 						$('#skip_first_order').show();
+						// Hide Pre-Payments section
+						$('#prepayments').hide();
 					} else {
 						// Hide Sync schedule
 						$('#skip_first_order').hide();
+						// Show Pre-Payments section
+						$('#prepayments').show();
 					}
 				});
 				// Day of Week/Month
 				$('[name="skip_first_order"]').on('click', function() {
 					var value = $(this).val();
 					if (value == 'yes') {
-						// Go to shipping settings and click skip
+						$('#example__skip__yes').show();
+						$('#example__skip__no').hide();
 					} else {
-						
+						$('#example__skip__yes').hide();
+						$('#example__skip__no').show();
 					}
 					// Show Pre-Payments section
 					$('#prepayments').show();
@@ -155,16 +248,45 @@
 				$('[name="prepayments"]').on('click', function() {
 					var value = $(this).val();
 					if (value == 'yes') {
+						$('#example_prepaid').show();
+						$('#prepaid_instructions').show();
+						$('#expiration').hide();
 					} else {
+						$('#example_prepaid').hide();
+						$('#prepaid_instructions').hide();
+						$('#expiration').show();
+					}
+				});
+				// Alternate Pricing
+				$('[name="prepaid_instructions"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'easy') {
+						$('#example_prepaid_instructions__easy').show();
+						$('#example_prepaid_instructions__hard').hide();
+					} else {
+						$('#example_prepaid_instructions__easy').hide();
+						$('#example_prepaid_instructions__hard').show();
 					}
 					// Show Pre-Payments section
 					$('#expiration').show();
 				});
-				// Expiration
+				// Alternate Pricing
 				$('[name="expiration"]').on('click', function() {
 					var value = $(this).val();
 					if (value == 'yes') {
+						$('#example_expires').show();
 					} else {
+						$('#example_expires').hide();
+					}
+					$('#altpricing').show();
+				});
+				// Expiration
+				$('[name="altpricing"]').on('click', function() {
+					var value = $(this).val();
+					if (value == 'yes') {
+						$('#example_altpricing').show();
+					} else {
+						$('#example_altpricing').hide();
 					}
 					// All questions submitted
 				});
